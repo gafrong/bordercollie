@@ -13,6 +13,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bootstrap-sass'
 gem 'font-awesome-rails'
 gem 'bcrypt'
+gem 'paperclip'
+gem 'devise'
+
+gem 'owlcarousel-rails'
 
 group :production do
   # gem 'rails_12factor'

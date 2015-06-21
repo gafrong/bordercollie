@@ -1,0 +1,26 @@
+// Main Page
+.carousel {
+  margin-top: -20px;
+  max-height: 400px;
+}
+
+.navbar {
+  color: #fff;
+  width: 100%;
+  z-index: 999;
+  background-color: rgba(1,1,1,0.1);
+  border: none;
+  color: orange;
+  a {
+    color: #fff;
+  }
+}
+.navbar > a {
+  color: green;
+}
+.navbar .container-fluid .navbar-header > a  {
+  color: orange;
+}
+.navbar .container-fluid .collapse > ul > li > a.btn{
+  // color: #fff;
+}

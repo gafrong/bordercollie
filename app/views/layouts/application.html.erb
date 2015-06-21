@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <link rel="shortcut icon" href="assets/img/favicon.ico"/>
   <title>Sajago</title>
+  <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,500,600,700,800,900' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -24,29 +27,62 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
       <ul class="nav navbar-nav navbar-right">
-        <li> <%= link_to '상품 팔기', new_listing_path, class: "strong bigger orange center" %></li>
+        <li> <%= link_to '물건 팔기', new_listing_path, id: "btn-sale" ,class: "btn btn-warning" %></li>
         <li class="dropdown center">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span class="caret"></span></a>
           <ul class="dropdown-menu right">
             <li><a href="/pages/about">About</a></li>
             <li><a href="/pages/contact">Contact</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#">Log out</a></li>
+            <% if user_signed_in? %>
+              <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
+              <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+            <% end %>
           </ul>
         </li>
+
+
+        <% if !user_signed_in? %> 
+          <li><%= link_to "Login", new_user_session_path %></li>    
+          <li><%= link_to "Sign Up", new_user_registration_path %></li>
+        <% end %>
       </ul>
+
+      <!-- devise -->
+      
+
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
 
 
-<div class="container">
-  <div class="row">
 
-  <%= yield %>
+<%= yield %>
   
-  </div>
-</div>
+
 <p>Copyright 2015</p>
+
+<script>
+  $(document).ready(function(){       
+     var scroll_start = 0;
+     var startchange = $('#startchange');
+     var offset = startchange.offset();
+      if (startchange.length){
+     $(document).scroll(function() { 
+        scroll_start = $(this).scrollTop();
+        if(scroll_start > offset.top) {
+            $(".navbar-inverse").css('background-color', '#2c2c2c');
+         } else {
+            $('.navbar-inverse').css('background-color', 'transparent');
+         }
+     });
+      }
+  });
+</script>
+  <script type='text/javascript' src='assets/js/masonry.js'></script>
+  <script type='text/javascript' src='assets/js/imagesloaded.js'></script>
+  <script type='text/javascript' src='assets/js/SmoothScroll.js'></script>
+  <script type='text/javascript' src='assets/js/init.js'></script>
+  <script type='text/javascript' src='assets/js/anim.js'></script>
 </body>
 </html>
